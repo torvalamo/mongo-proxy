@@ -1,6 +1,11 @@
 const { MongoClient } = require('mongodb');
 
 module.exports = (mongodb_uri, options, callback) => {
+	if (typeof options == 'function') {
+		callback = options;
+		options = {};
+	}
+	
 	options = Object.assign({
 		collectionSymbol: '@',
 		cacheCollections: true,
@@ -10,7 +15,14 @@ module.exports = (mongodb_uri, options, callback) => {
 	const collections = {};
 	
 	MongoClient.connect(mongodb_uri, options, (err, db) => {
-		new Proxy(db, {
+		if (err) {
+			if (callback) {
+				return callback(err);
+			}
+			throw err;
+		}
+		
+		var proxy = new Proxy(db, {
 			get: (target, property, receiver) => {
 				if (property in target) {
 					return target[property];
@@ -27,6 +39,8 @@ module.exports = (mongodb_uri, options, callback) => {
 					}
 				}
 			}
-		})
+		});
+		
+		callback && callback(err, db);
 	});
 };
