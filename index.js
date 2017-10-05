@@ -35,12 +35,12 @@ module.exports = (mongodb_uri, options, callback) => {
 						}
 						return collections[property];
 					} else {
-						return db.collection(property);
+						return target.collection(property);
 					}
 				}
 			}
 		});
 		
-		callback && callback(err, db);
+		callback && callback(err, proxy);
 	});
 };
