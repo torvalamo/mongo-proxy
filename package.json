@@ -1,0 +1,23 @@
+{
+  "name": "mongo-proxy",
+  "version": "1.0.0",
+  "description": "A proxy for the mongo db object that allows caching and/or dot access to collections (similar to mongodb shell).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "github.com/torvalamo/mongo-proxy"
+  },
+  "keywords": [
+    "mongodb",
+    "proxy",
+    "mongo",
+    "db",
+    "collection",
+    "collections"
+  ],
+  "author": "Tor Valamo <tor.valamo@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.2.31"
+  }
+}
