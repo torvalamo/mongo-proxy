@@ -6,8 +6,8 @@ Installation
 
 Use
 
-	const mongodb = require('mongo-proxy');
-	const db = mongodb(process.env.MONGODB_URI, {
+	const mongoProxy = require('mongo-proxy');
+	mongoProxy(process.env.MONGODB_URI, {
 		// Any mongodb connection options
 		// ...
 		
